@@ -1,13 +1,20 @@
 import { useLocalSearchParams } from 'expo-router';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, Image } from 'react-native';
+import Animated from 'react-native-reanimated';
 
 export default function Details() {
-  const { name } = useLocalSearchParams();
+  const { title, desc, image, id } = useLocalSearchParams();
   return (
     <View style={styles.container}>
       <View style={styles.main}>
-        <Text style={styles.title}>Details</Text>
-        <Text style={styles.subtitle}>Showing details for user {name}.</Text>
+        {/* <Image source={{ uri: image as string }} style={{ ...styles.image }} /> */}
+        <Animated.Image
+          sharedTransitionTag={`image-${id}`}
+          source={{ uri: image as string }}
+          style={{ ...styles.image }}
+        />
+        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.subtitle}>{desc}.</Text>
       </View>
     </View>
   );
@@ -16,7 +23,6 @@ export default function Details() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 24,
   },
   main: {
     flex: 1,
@@ -30,5 +36,12 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: 36,
     color: '#38434D',
+  },
+  image: {
+    borderBottomLeftRadius: 24,
+    borderBottomRightRadius: 24,
+    width: '100%',
+    height: 300,
+    marginBottom: 24,
   },
 });

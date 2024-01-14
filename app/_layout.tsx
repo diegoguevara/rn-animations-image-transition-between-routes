@@ -16,7 +16,7 @@ export default function Layout() {
 
   return (
     <Stack>
-      <Stack.Screen name="index" options={{ title: 'Overview' }} />
+      <Stack.Screen name="index" options={{ title: 'List' }} />
       <Stack.Screen
         name="details"
         options={{ title: 'Details', headerLeft: () => <BackButton /> }}
